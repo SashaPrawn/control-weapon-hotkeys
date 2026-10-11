@@ -1,0 +1,24 @@
+name: Manual build
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v3
+
+      - name: Build VCXPROJ
+        run: msbuild build/WeaponSwitch.vcxproj /p:Configuration=Release /p:Platform=x64
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: compiled-mod
+          path: build/x64/Release/*.dll
+          retention-days: 14
