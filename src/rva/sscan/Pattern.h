@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <vector>
+#include <string>
 
 // from boost someplace
 template <uint64_t FnvPrime, uint64_t OffsetBasis>
